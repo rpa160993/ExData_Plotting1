@@ -1,0 +1,7 @@
+data1<-read.csv("C:\\Users\\ACER\\Downloads\\household_power_consumption.txt",sep=";")
+data2<-rbind(data1[as.character(data1$Date)=="1/2/2007",],data1[as.character(data1$Date)=="2/2/2007",])
+data2$DateTime <- paste(as.character(data2$Date), as.character(data2$Time))
+data2$DateTime <- strptime(data2$DateTime, format = "%d/%m/%Y %H:%M:%S")
+plot(data2$DateTime,as.numeric(as.character(data2[,3])),type="l",xlab="",ylab="Global Active Power (kilowatts)")
+dev.copy(png, file = "plot2.png")
+dev.off()
